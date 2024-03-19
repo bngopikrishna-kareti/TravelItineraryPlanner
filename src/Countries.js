@@ -6,6 +6,12 @@ const Countries = () => {
     const {continent} = useParams();
     const [countries,setCountries] = useState(null);
     const [filteredCountries,setfilteredCountries] = useState(null);
+    const [checkedList,setcheckedList] = useState({});
+
+    const setChecked = (country) =>{
+
+        
+    }
 
     const selectedCountry = (input) =>{
         if (input != null && countries){
@@ -35,10 +41,17 @@ const Countries = () => {
                     <option>{country}</option>
                 ))}
             </datalist>
-            <h1>{continent} is selected</h1>
-            {filteredCountries && filteredCountries.map(country =>(
-               <h1>{country}</h1>
-            ))}
+            <div className="countryImages">
+                {filteredCountries && filteredCountries.map(country =>(
+                    <div className="countryImage">
+                        <input type="checkbox" value={country} name={country} id={country} checked={checkSelected()} onChange={(e) => setChecked(e.target.value)}/>
+                        <label htmlFor={country}>
+                            <img src={'/CountryImages/'+country+'.jpeg'} alt={country}/>
+                            <p>{country}</p>
+                        </label>
+                    </div>     
+                ))}
+            </div>
         </div>
     );       
 }

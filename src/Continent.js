@@ -22,7 +22,7 @@ const Continent = () => {
                     ))}
                 </div>
                 <Link to={`/${continent}/countries`}>
-                    <button>
+                    <button disabled={!continent?true:false}>
                     Next
                     </button>
                 </Link>
