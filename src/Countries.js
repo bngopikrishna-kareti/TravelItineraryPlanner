@@ -9,9 +9,24 @@ const Countries = () => {
     const [checkedList,setcheckedList] = useState({});
 
     const setChecked = (country) =>{
-
-        
+        var value = {};
+        if(country in checkedList)
+        {
+            value[country] = !checkedList[country];
+            setcheckedList(checkedList =>({
+                ...checkedList,
+                ...value
+            }));
+        }
+        else{
+            value[country] = true;
+            setcheckedList(checkedList => ({
+                ...checkedList,
+                ...value
+            }));
+        }
     }
+
 
     const selectedCountry = (input) =>{
         if (input != null && countries){
@@ -44,7 +59,9 @@ const Countries = () => {
             <div className="countryImages">
                 {filteredCountries && filteredCountries.map(country =>(
                     <div className="countryImage">
-                        <input type="checkbox" value={country} name={country} id={country} checked={checkSelected()} onChange={(e) => setChecked(e.target.value)}/>
+                        <input type="checkbox" value={country} name={country} id={country} 
+                        checked={country in checkedList?checkedList[country]:false} onChange={(e) => setChecked(e.target.value)}
+                        />
                         <label htmlFor={country}>
                             <img src={'/CountryImages/'+country+'.jpeg'} alt={country}/>
                             <p>{country}</p>
