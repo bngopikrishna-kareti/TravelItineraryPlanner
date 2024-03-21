@@ -250,10 +250,10 @@ body{
 .react-calendar {
   width: 350px;
   max-width: 100%;
-  background: white;
-  border: 1px solid #a0a096;
+  background: white; 
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
+  border: 1px solid #a0a096;
 }
 
 .react-calendar--doubleView {
@@ -402,4 +402,55 @@ body{
 
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
+}
+
+.Calendar{
+  width:100vw;
+  height:100vh;
+  background-color: white;
+  display: flex;
+}
+
+.Calendar-div{
+  width:66%;
+}
+
+.Calendar-background-image{
+  width:34%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./homeScreenImage.jpg');
+}
+
+.Calendar-background-image p{
+  margin-top:60%;
+  margin-left:20%;
+  color: white;
+  font-size: 35px;
+  font-weight: bolder;
+
+}
+
+.Calendar-div h1{
+  color: #197d99;
+  margin-left:30%;
+  margin-bottom:10%;
+
+}
+
+.Calendar-margin{
+  margin-left:30%;
+}
+
+.Calendar-div-next-button {
+  color:white;
+  background-color: red;
+  font-weight: bolder;
+  padding:1%;
+  margin-left:45%;
+  margin-top:10%;
+}
+
+.Calendar-div-next-button:hover{
+  cursor: pointer;
 }

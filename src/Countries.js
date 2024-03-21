@@ -63,7 +63,7 @@ const Countries = () => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
+               console.log(data);
                 setCountries(data);
                 setfilteredCountries(data.countries);
             });
@@ -89,7 +89,7 @@ const Countries = () => {
                     </div>     
                 ))}
             </div>
-            <Link to="/StartJourney" state={{selectedCountries:getSelectedCountries()}} >
+            <Link to="/startJourney" state={{selectedCountries:getSelectedCountries()}} >
                 <button disabled={checkCountrySelected()}>
                     next
                 </button>

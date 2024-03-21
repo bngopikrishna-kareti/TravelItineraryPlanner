@@ -1,32 +1,34 @@
-import { useLocation } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 import React, { useState } from 'react';
 import Calendar from "react-calendar";
-import dateFormat from "dateformat";
 
 const StartJourney = () => {
     const {selectedCountries} = useLocation().state;
-    const [startDate,setStartDate] = useState(new Date());
-    const [daysCount,setDaysCount] = useState();
+    const [dates,setDates] = useState();
 
     const onChange = date =>{
-        setStartDate(date);
-        getDaysCount();
-    }
-    const getDaysCount = () =>{
-        setDaysCount((dateFormat(startDate[1],'dd')-dateFormat(startDate[0],'dd')) + 1);
-        console.log(daysCount);
+        setDates(date);
+
     }
     return (  
-        <div>
-            {selectedCountries.map(country =>(
-            <h1>{country}</h1>
-
-        ))}
-        <div className="react-calendar">
-            <Calendar value={startDate} onChange={onChange} minDate={new Date()} selectRange={true}/>
+        <div className="Calendar">
+            <div className="Calendar-div">
+                <h1>Select your trip dates</h1>
+                <div className="Calendar-margin">
+                    <div className="react-calendar">
+                        <Calendar value={dates} onChange={onChange} minDate={new Date()} selectRange={true}/>
+                    </div>
+                </div>
+                <Link to="/touristAttractions" state={{selectedCountries:selectedCountries , dates:dates}} >
+                <button className="Calendar-div-next-button">
+                    next
+                </button>
+            </Link>
+            </div>
+            <div className="Calendar-background-image">
+                <p> Create your Epic Journey</p>
+            </div>
         </div>
-        </div>
-        
     );
 }
  

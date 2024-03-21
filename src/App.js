@@ -5,6 +5,7 @@ import Home from './Home';
 import Continent from './Continent';
 import Countries from './Countries';
 import StartJourney from './StartJourney';
+import TouristAttractions from './TouristAttractions';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/continents" element={<Continent/>} />
         <Route path="/:continent/countries" element={<Countries />} />
-        <Route path="/StartJourney" element={<StartJourney />} />
+        <Route path="/startJourney" element={<StartJourney />} />
+        <Route path="/touristAttractions" element={<TouristAttractions />} />
       </Routes>
     </Router>
   );
