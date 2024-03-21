@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import React  from "react";
 import { useState, useEffect } from "react";
 
@@ -7,6 +7,26 @@ const Countries = () => {
     const [countries,setCountries] = useState(null);
     const [filteredCountries,setfilteredCountries] = useState(null);
     const [checkedList,setcheckedList] = useState({});
+
+    const getSelectedCountries = () =>{
+        const selectedCountries = [];
+        for (const [key, value] of Object.entries(checkedList)){
+            if(value)
+            {
+                selectedCountries.push(key);
+            }
+        }
+        return selectedCountries;
+    }
+
+    const checkCountrySelected =() =>{
+        for(const [key,value] of Object.entries(checkedList)){
+            if(value){
+                return false;
+            }
+        }
+        return true;
+    }
 
     const setChecked = (country) =>{
         var value = {};
@@ -69,6 +89,11 @@ const Countries = () => {
                     </div>     
                 ))}
             </div>
+            <Link to="/StartJourney" state={{selectedCountries:getSelectedCountries()}} >
+                <button disabled={checkCountrySelected()}>
+                    next
+                </button>
+            </Link>
         </div>
     );       
 }
