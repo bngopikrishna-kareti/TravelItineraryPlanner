@@ -5,9 +5,11 @@ const TouristAttractions = () => {
     const {dates} = useLocation().state;
     const noOfDays = Math.round((dates[1].getTime()-dates[0].getTime())/(1000*3600*24))
     return (  
-        <div>
-            {selectedCountries}
-            {noOfDays}
+        <div className="touristAttractions">
+            <div className="map-div">
+                <h1>Map</h1>
+            </div>
+            
         </div>
     );
 }

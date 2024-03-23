@@ -454,3 +454,20 @@ body{
 .Calendar-div-next-button:hover{
   cursor: pointer;
 }
+
+.touristAttractions{
+  width:100vw;
+  height:100vh;
+  background-color: white;
+  position: absolute;
+}
+
+.map-div{
+  width:80%;
+  height:60%;
+  margin:auto;
+  margin-top:7%;
+  background-color:#61dafb;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px cadetblue;
+}
