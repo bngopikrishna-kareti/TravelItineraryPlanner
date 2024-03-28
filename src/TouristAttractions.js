@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Map, { Marker, Popup } from "react-map-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 const TouristAttractions = () => {
     const {selectedCountries} = useLocation().state;
-    // const {dates} = useLocation().state;
-    // const noOfDays = Math.round((dates[1].getTime()-dates[0].getTime())/(1000*3600*24));
+    const {dates} = useLocation().state;
+    const noOfDays = Math.round((dates[1].getTime()-dates[0].getTime())/(1000*3600*24));
     const [touristAttractions,setTouristAttractions] = useState();
     const [viewPort, setViewPort] = useState(
         {
@@ -16,18 +18,35 @@ const TouristAttractions = () => {
 
         }
     );
-    const [selectedPlace,setSelectedPlace] = useState(null);
+    const [selectedPlace,setSelectedPlace] = useState();
+    const [dropDown,setdropDown] = useState(false);
+    let travelItinerary =useRef({});
+    const [selectedtouristAttraction,setSelectedtouristAttraction] = useState(null);
+    const addPlaceToItinerary = (day,selectedCountry) =>{
+        if(
+        !travelItinerary.current[day].includes(selectedCountry.cid)){
+            travelItinerary.current[day].push(selectedCountry.cid);
+        }
+        console.log(travelItinerary.current);
+
+    } 
+
     useEffect(() =>{
         fetch(`http://127.0.0.1:8000/touristAttractions/?countries=${selectedCountries}`)
         .then(res =>{
             return res.json();
         })
         .then(data =>{
-            console.log(data);
             setTouristAttractions(data);
         });
+        let itineraryDict ={}
+        for(let value=0;value<noOfDays;value++){
+            itineraryDict[value+1] =[];
+        }
+        travelItinerary.current = itineraryDict;
+        console.log(travelItinerary.current);
+    },[selectedCountries,noOfDays]);
 
-    },[selectedCountries]);
     return (  
         <div className="touristAttractions">
             <div className="map-div">
@@ -39,24 +58,59 @@ const TouristAttractions = () => {
                 {touristAttractions && touristAttractions.tourist_attractions.map(touristAttraction =>(
                     <Marker key={touristAttraction.cid} latitude={touristAttraction.latitude} longitude={touristAttraction.longitude}>
                         <button onClick={e => {
-                            e.preventDefault();
                             setSelectedPlace(touristAttraction);
                             }}>
                             <img src={touristAttraction.imageUrls} alt={touristAttraction.title} width="10px" height="10px"/>
                         </button>
                     </Marker>
                 ))}
-                {
-                    console.log(selectedPlace)
-                }
                 {selectedPlace && (
-                    <Popup latitude={selectedPlace.latitude} longitude={selectedPlace.longitude}>
-                        <h1>{selectedPlace.title}</h1>
-                        <h6>{selectedPlace.address}</h6>
-                    </Popup>
-                )
-                }
+                     <Popup longitude={selectedPlace.longitude} latitude={selectedPlace.latitude}
+                     anchor="bottom"
+                     onClose={()=>setSelectedPlace(null)}
+                     closeOnClick={false}>
+                        <div>
+                            <h1>{selectedPlace.title}</h1>
+                            <h6>{selectedPlace.address}</h6>
+                        </div>
+                    </Popup>)}
                 </Map>
+                {touristAttractions && touristAttractions.tourist_attractions.map(touristAttraction =>(
+                    <div className="placeCards">
+                        <div className="placeImage">
+                            <img src={touristAttraction.imageUrls} alt={touristAttraction.title}/>
+                        </div>
+                        <div className="placeInfo">
+                            <h1>{touristAttraction.title}</h1>
+                            <h6>{touristAttraction.address}</h6>
+                        </div>
+                        <div className="addButton">
+                            <button className="plusButton" onClick={()=>{
+                                setSelectedtouristAttraction(touristAttraction);
+                                setdropDown(!dropDown);
+                            }}>
+                                <img src="Plus_symbol.png" alt="plus"/>
+                            </button>
+                            {dropDown && touristAttraction===selectedtouristAttraction && (
+                                    Object.keys(travelItinerary.current).map(key =>(
+                                            <ul>
+                                                <button className="listButton" 
+                                                onClick={evt =>{
+                                                    setdropDown(!dropDown);
+                                                    addPlaceToItinerary(evt.target.value,selectedtouristAttraction);
+                                                }} 
+                                                value={key}>
+                                                    Day{key}
+                                                </button>
+                                            </ul>
+                                        )) 
+                                )}
+                        </div>
+                    </div>
+                    ))
+                }
+
+                
             </div>
             
         </div>

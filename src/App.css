@@ -38,7 +38,7 @@
   }
 }
 
-body{
+.HomeScreen{
   background-image: url(./homeScreenImage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -467,7 +467,61 @@ body{
   height:60%;
   margin:auto;
   margin-top:7%;
-  background-color:#61dafb;
   border-radius: 5px;
   box-shadow: 5px 5px 5px cadetblue;
+  overflow: wrap;
+}
+
+.placeCards{
+  display: flex;
+  width:80%;
+  height:35%;
+  flex-wrap: wrap;
+  background-color: cadetblue;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px cadetblue;
+  margin:25px;
+}
+.placeImage{
+  width:25%;
+  height:100%;
+}
+.placeImage img{
+  width:100%;
+  height:100%;
+  border-radius: 5px;
+}
+
+.placeInfo{
+  padding:10px;
+}
+.addButton{
+  margin-left:auto;
+  margin-right:10px;
+}
+.addButton img{
+  width:35px;
+  height:35px;
+}
+.plusButton{
+  all:unset;
+}
+
+.plusButton:hover{
+  cursor: pointer;
+}
+
+.listButton{
+  background-color: white;
+  border:thin 1px black;
+  padding:5px;
+  font-size: 18px;
+}
+.listButton:hover{
+  cursor: pointer;
+  background-color: #757575;
+}
+.addButton ul{
+  margin:0;
+  padding: 0;
 }
