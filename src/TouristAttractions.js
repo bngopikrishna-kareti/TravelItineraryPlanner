@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Map, { Marker, Popup } from "react-map-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -109,10 +109,12 @@ const TouristAttractions = () => {
                     </div>
                     ))
                 }
-
-                
+                <Link to='/travelItinerary' state={{travelItinerary:travelItinerary, touristAttractions:touristAttractions, dates:dates}} >
+                    <button class="saveButton" disabled={travelItinerary?false:true}>
+                        Save
+                    </button>
+                </Link>
             </div>
-            
         </div>
     );
 }

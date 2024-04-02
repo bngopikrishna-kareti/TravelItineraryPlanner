@@ -6,6 +6,7 @@ import Continent from './Continent';
 import Countries from './Countries';
 import StartJourney from './StartJourney';
 import TouristAttractions from './TouristAttractions';
+import TravelItinerary from './TravelItinerary';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/:continent/countries" element={<Countries />} />
         <Route path="/startJourney" element={<StartJourney />} />
         <Route path="/touristAttractions" element={<TouristAttractions />} />
+        <Route path="/travelItinerary" element={<TravelItinerary />} />
       </Routes>
     </Router>
   );

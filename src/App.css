@@ -525,3 +525,44 @@
   margin:0;
   padding: 0;
 }
+
+.saveButton{
+  text-align: center;
+  margin-left: 50%;
+  padding: 1.5%;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 10%;
+  font-weight: bold;
+}
+
+.saveButton:hover{
+  cursor: pointer;
+}
+.saveButton:disabled{
+  background-color: grey;
+}
+
+.travelItinerary{
+  border: 1px solid black;
+  width:60vw;
+  height:90vh;
+  margin:auto;
+  margin-top: 10px;
+  overflow: auto;
+}
+
+.dayWise{
+  border:1px solid black;
+}
+
+.date{
+  display: flex;
+  margin-left:10px;
+}
+
+.currentDate{
+  margin-left:auto;
+  margin-right:10px;
+}
