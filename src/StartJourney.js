@@ -4,8 +4,7 @@ import Calendar from "react-calendar";
 
 const StartJourney = () => {
     const {selectedCountries} = useLocation().state;
-    const [dates,setDates] = useState();
-
+    const [dates,setDates] = useState([new Date(),new Date()]);
     const onChange = date =>{
         setDates(date);
 

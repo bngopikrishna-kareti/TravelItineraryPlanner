@@ -6,7 +6,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const TouristAttractions = () => {
     const {selectedCountries} = useLocation().state;
     const {dates} = useLocation().state;
-    const noOfDays = Math.round((dates[1].getTime()-dates[0].getTime())/(1000*3600*24));
+    let noOfDays = Math.round((dates[1].getTime()-dates[0].getTime())/(1000*3600*24));
+    noOfDays = noOfDays === 0? 1: noOfDays;
     const [touristAttractions,setTouristAttractions] = useState();
     const [viewPort, setViewPort] = useState(
         {
@@ -30,7 +31,7 @@ const TouristAttractions = () => {
         console.log(travelItinerary.current);
 
     } 
-
+    
     useEffect(() =>{
         fetch(`http://127.0.0.1:8000/touristAttractions/?countries=${selectedCountries}`)
         .then(res =>{
