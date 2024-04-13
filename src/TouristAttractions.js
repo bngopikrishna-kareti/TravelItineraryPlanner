@@ -111,7 +111,7 @@ const TouristAttractions = () => {
                 }
                 <Link to='/travelItinerary' state={{travelItinerary:travelItinerary, touristAttractions:touristAttractions, dates:dates}} >
                     <button class="saveButton" disabled={travelItinerary?false:true}>
-                        Save
+                        View
                     </button>
                 </Link>
             </div>
