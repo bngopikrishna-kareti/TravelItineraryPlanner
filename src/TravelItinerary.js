@@ -1,14 +1,31 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import dateFormat from "dateformat";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 const TravelItinerary = () => {
     const {travelItinerary} = useLocation().state;
     const {touristAttractions} = useLocation().state;
     const {dates} = useLocation().state;
     let date = new Date();
-    return ( 
-        <div className="travelItinerary">
+    const downloadPdf = () =>{
+        const capture = document.querySelector('.travelItinerary');
+        capture.parentNode.style.overflow = 'visible';
+        html2canvas(capture,{scrollY: 0}).then(canvas =>{
+            const dataUrl = canvas.toDataURL();
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const imgProps = doc.getImageProperties(dataUrl);
+            const componentWidth = doc.internal.pageSize.getWidth();
+            const componentHeight = (imgProps.height * componentWidth)/imgProps.width;      
+            doc.addImage(dataUrl, 'PNG', 0, 0 , componentWidth, componentHeight);
+            doc.save('travelItinerary.pdf');
+        })
+
+    }
+    return (
+        <div>
+            <div className="travelItinerary">
             <h2>Start Date:{dateFormat(dates[0],'dd-mm-yyyy')}</h2>
             <h2>End Date:{dateFormat(dates[1],'dd-mm-yyyy')}</h2>
             {
@@ -32,7 +49,15 @@ const TravelItinerary = () => {
                     </div>
                 ))
             }
-        </div>
+            </div>
+            <div className="savePdfButton">
+                <button onClick={downloadPdf}>
+                    Save
+                </button>
+                
+            </div>
+        </div> 
+        
      );
 }
  

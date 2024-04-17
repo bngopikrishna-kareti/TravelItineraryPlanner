@@ -7,6 +7,7 @@ import Countries from './Countries';
 import StartJourney from './StartJourney';
 import TouristAttractions from './TouristAttractions';
 import TravelItinerary from './TravelItinerary';
+import Contact from './Contact';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/startJourney" element={<StartJourney />} />
         <Route path="/touristAttractions" element={<TouristAttractions />} />
         <Route path="/travelItinerary" element={<TravelItinerary />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

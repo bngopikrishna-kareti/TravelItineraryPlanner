@@ -550,7 +550,7 @@
   height:90vh;
   margin:auto;
   margin-top: 10px;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 .dayWise{
@@ -565,4 +565,103 @@
 .currentDate{
   margin-left:auto;
   margin-right:10px;
+}
+.savePdfButton{
+  margin-left:50%;
+  margin-top:2px;
+}
+.savePdfButton button{
+  background-color: red;
+  color:white;
+  padding:10px;
+  width:10%;
+  height:10%;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.savePdfButton button:hover{
+  cursor: pointer;
+}
+
+.Contact{
+  display: flex;
+  width:100vw;
+  height:100vh;
+}
+.mailImage{
+  width:60vw;
+  height:100vh;
+}
+.mailImage img{
+  width:60%;
+  height:50%;
+  margin-top:20%;
+  margin-left:20%;
+  border-radius: 5px;
+}
+.contactUsForm{
+  width:40vw;
+  margin: auto;
+  margin-top: auto;
+}
+
+.contactUsForm h2{
+  margin-left: 20%;
+}
+.nameInput{
+  background-color: #e7e7c5;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width:60%;
+  background-image: url("/userIcon.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 10px;
+  opacity: 80%;
+  padding-left:50px;
+}
+
+.emailInput{
+  background-color: #e7e7c5;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width:60%;
+  background-image: url("/mail.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 10px;
+  opacity: 80%;
+  padding-left:50px;
+}
+.contactUsForm input::placeholder{
+  opacity: 80%;
+  font-weight: bold;
+  padding-left: 30px;
+}
+.contactUsForm button{
+  width:60%;
+  color: white;
+  background-color: #619ad3;
+  padding: 10px;
+  border-radius: 15px;
+  margin-left: 5%;
+}
+
+.contactUsForm button:hover{
+  cursor: pointer;
+}
+
+.contactUsForm textarea{
+  border-radius: 20px;
+  padding: 10px;
+  background-color:  #e7e7c5;
+  width: 65%;
+  margin-bottom: 20px;
+}
+
+.contactUsForm textarea::placeholder{
+  padding-left: 20px;
 }
